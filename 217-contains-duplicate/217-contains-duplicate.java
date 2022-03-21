@@ -12,6 +12,7 @@ class Solution {
         return false;*/
         
         if(nums == null || nums.length < 2) return false;
+        if(nums[0] == nums[1] || nums[nums.length-1] == nums[nums.length-2]) return true;
         Set<Integer> set = new HashSet<>();
         for(int i : nums){
             if(set.contains(i)){
