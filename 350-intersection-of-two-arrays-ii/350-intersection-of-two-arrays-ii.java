@@ -1,6 +1,6 @@
 class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-        /*Arrays.sort(nums1);
+        Arrays.sort(nums1);
         Arrays.sort(nums2);
         int i = 0;
         int j = 0;
@@ -19,9 +19,9 @@ class Solution {
             }
         }
         int[] arr = res.stream().mapToInt(x -> x).toArray();
-        return arr;*/
+        return arr;
         
-        HashMap<Integer,Integer> map = new HashMap<>();
+        /*HashMap<Integer,Integer> map = new HashMap<>();
         List<Integer> res = new ArrayList<>();
         for(int i = 0;i<nums1.length;i++){
             map.put(nums1[i],map.getOrDefault(nums1[i],0)+1);
@@ -32,6 +32,6 @@ class Solution {
                 map.put(nums2[i],map.get(nums2[i])-1);
             }
         }
-        return res.stream().mapToInt(x -> x).toArray();
+        return res.stream().mapToInt(x -> x).toArray();*/
     } 
 }
