@@ -10,7 +10,7 @@
  */
 class Solution {
     public ListNode swapNodes(ListNode head, int k) {
-        List<Integer> list = new ArrayList<>();
+        /*List<Integer> list = new ArrayList<>();
         ListNode curr = head;
         while(curr != null){
             list.add(curr.val);
@@ -27,6 +27,24 @@ class Solution {
             curr.next = node;
             curr = node;
         }
-        return dummy.next;
+        return dummy.next;*/
+        ListNode left = head;
+        ListNode right = head;
+        ListNode curr = head;
+        int counter = 1;
+        while(curr != null){
+            if(counter < k){
+                left = left.next;
+            }
+            if(counter > k){
+                right = right.next;
+            }
+            curr = curr.next;
+            counter++;
+        }
+        int temp = left.val;
+        left.val = right.val;
+        right.val = temp;
+        return head;
     }
 }
