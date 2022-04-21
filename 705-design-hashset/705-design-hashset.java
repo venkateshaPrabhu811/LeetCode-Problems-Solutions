@@ -1,19 +1,62 @@
 class MyHashSet {
-    int[] hs;
+    Entry[] bucket;
+    int size = 1000;
     public MyHashSet() {
-        hs = new int[1_000_001];
+        bucket = new Entry[size];
     }
     
     public void add(int key) {
-        hs[key] = 1;
+        Entry entry = bucket[key%size];
+        if(entry == null){
+            bucket[key%size] = new Entry(key,null);
+            return;
+        }
+        Entry prev = null;
+        while(entry != null){
+            if(entry.val == key) return;
+            prev = entry;
+            entry = entry.next;    
+        }
+        prev.next = new Entry(key,null);
     }
     
     public void remove(int key) {
-        hs[key] = 0;
+        Entry entry = bucket[key%size];
+        if(entry == null) return;
+        Entry prev = null;
+        while(entry != null){
+            if(entry.val == key){
+                if(prev == null){
+                    bucket[key%size] = entry.next;
+                }
+                else{
+                    prev.next = entry.next;
+                }
+                return;
+            }
+            prev = entry;
+            entry = entry.next;
+        }
     }
     
     public boolean contains(int key) {
-        return hs[key] == 1;
+        Entry entry = bucket[key%size];
+        if(entry == null) return false;
+        while(entry != null){
+            if(entry.val == key){
+                return true;
+            }
+            entry = entry.next;
+        }
+        return false;
+    }
+}
+class Entry{
+    int val;
+    Entry next;
+    Entry(int val,Entry next){
+        this.val = val;
+        this.next = next;
     }
 }
 
