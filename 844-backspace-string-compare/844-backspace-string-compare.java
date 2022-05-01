@@ -35,8 +35,7 @@ class Solution {
         int spaceRight = 0;
         while(left >= 0 || right >= 0){
             while(left >= 0){
-                char ch = s.charAt(left);
-                if(ch == '#'){
+                if(s.charAt(left) == '#'){
                     spaceLeft++;
                     left--;
                 }
@@ -49,8 +48,7 @@ class Solution {
                 }
             }
             while(right >= 0){
-                char ch = t.charAt(right);
-                if(ch == '#'){
+                if(t.charAt(right) == '#'){
                     spaceRight++;
                     right--;
                 }
