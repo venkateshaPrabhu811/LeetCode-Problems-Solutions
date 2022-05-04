@@ -3,9 +3,10 @@ class Solution {
         HashMap<Integer,Integer> map = new HashMap<>();
         int count = 0;
         for(int i : nums){
-            if(map.get(k - i) != null && map.get(k-i) > 0){
+            Integer val = map.get(k-i);
+            if(val != null && val > 0){
                 count++;
-                map.put(k-i,map.get(k-i)-1);
+                map.put(k-i,val-1);
             }
             else{
                 map.put(i,map.getOrDefault(i,0)+1);
