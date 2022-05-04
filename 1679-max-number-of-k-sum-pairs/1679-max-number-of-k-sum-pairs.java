@@ -3,7 +3,7 @@ class Solution {
         HashMap<Integer,Integer> map = new HashMap<>();
         int count = 0;
         for(int i : nums){
-            if(map.containsKey(k - i) && map.get(k-i) > 0){
+            if(map.get(k - i) != null && map.get(k-i) > 0){
                 count++;
                 map.put(k-i,map.get(k-i)-1);
             }
