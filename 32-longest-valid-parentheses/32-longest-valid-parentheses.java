@@ -21,7 +21,8 @@ class Solution {
             }
         }
         return max;*/
-        int open = 0;
+        //O(1) space approach by counting the open and close paranthesis
+        /*int open = 0;
         int close = 0;
         int max = 0;
         char ch;
@@ -50,6 +51,20 @@ class Solution {
             else if(open > close)
                 open = close = 0;
         }
-        return max;
+        return max;*/
+        //Using dp
+        int maxans = 0;
+        int dp[] = new int[s.length()];
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) == ')') {
+                if (s.charAt(i - 1) == '(') {
+                    dp[i] = (i >= 2 ? dp[i - 2] : 0) + 2;
+                } else if (i - dp[i - 1] > 0 && s.charAt(i - dp[i - 1] - 1) == '(') {
+                    dp[i] = dp[i - 1] + ((i - dp[i - 1]) >= 2 ? dp[i - dp[i - 1] - 2] : 0) + 2;
+                }
+                maxans = Math.max(maxans, dp[i]);
+            }
+        }
+        return maxans;
     }
 }
