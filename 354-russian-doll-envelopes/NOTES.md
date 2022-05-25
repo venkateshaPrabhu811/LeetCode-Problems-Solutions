@@ -1,0 +1,1 @@
+It just a type of Longest Increasing Subsequence problem but with two dimensions so we need t oinitially reduce it to one dimension by sorting width and if widths are equal then we sort the height in decreasing order to remove duplicacy and use binary search along with dp array to find the longest increasing subsequence
