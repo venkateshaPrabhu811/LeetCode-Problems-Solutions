@@ -14,7 +14,7 @@
  * }
  */
 class Solution {
-    int cam;
+    /*int cam;
     Set<TreeNode> covered;
     public int minCameraCover(TreeNode root) {
         if(root == null) return 0;
@@ -37,5 +37,22 @@ class Solution {
                 ++cam;
             }
         }
+    }*/
+    int cam = 0;
+    public int minCameraCover(TreeNode root){
+        return dfs(root) == 0 ? ++cam : cam;
+    }
+    public int dfs(TreeNode node){
+        if(node == null) return 1;
+        int left = dfs(node.left);
+        int right = dfs(node.right);
+        if(left == 0 || right == 0){
+            ++cam;
+            return 2;
+        }
+        else if(left == 2 || right == 2){
+            return 1;
+        }
+        else return 0;
     }
 }
