@@ -1,6 +1,6 @@
 class Solution {
     public int maxScore(int[] cardPoints, int k) {
-        int n = cardPoints.length;
+        /*int n = cardPoints.length;
         int[] pre = new int[n];
         pre[0] = cardPoints[0];
         for(int i = 1;i<n;++i){
@@ -14,6 +14,23 @@ class Solution {
             //iteratively take more elements from last and less elements from first
             max = Math.max(currSum,max);
             currSum -= pre[j];
+        }
+        return max;*/
+        
+        int n = cardPoints.length;
+        int[] pre = new int[n+1];
+        int[] suf = new int[n+1];
+        
+        for(int i = 1;i<=n;++i){
+            pre[i] = cardPoints[i-1] + pre[i-1];
+        }
+        
+        for(int i = n-1;i>=0;--i){
+            suf[i] = cardPoints[i] + suf[i+1];
+        }
+        int max = 0;
+        for(int i = 0;i<=k;++i){
+            max = Math.max(max,pre[i] + suf[n - k + i]);
         }
         return max;
     }
