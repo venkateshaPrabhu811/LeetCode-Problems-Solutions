@@ -15,7 +15,7 @@
  */
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        Queue<TreeNode> que = new LinkedList<>();
+        /*Queue<TreeNode> que = new LinkedList<>();
         List<List<Integer>> res = new ArrayList<>();
         if(root == null) return res;
         que.offer(root);
@@ -30,6 +30,19 @@ class Solution {
             }
             res.add(temp);
         }
+        return res;*/
+        
+        List<List<Integer>> res = new LinkedList<>();
+        dfs(res,root,0);
         return res;
+    }
+    private void dfs(List<List<Integer>> res,TreeNode root,int height){
+        if(root == null) return;
+        if(height >= res.size()){
+            res.add(new LinkedList<>());
+        }
+        res.get(height).add(root.val);
+        dfs(res,root.left,height+1);
+        dfs(res,root.right,height+1);
     }
 }
