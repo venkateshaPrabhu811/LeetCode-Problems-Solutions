@@ -1,6 +1,6 @@
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
-        /*int r = 0;
+        int r = 0;
         int c = matrix[0].length-1;
         while(r < matrix.length && c >= 0){
             if(matrix[r][c] == target) return true;
@@ -8,10 +8,10 @@ class Solution {
             else r++;
         }
         return false;
-        */
+        
         
         //Binary Search
-        int m = matrix.length;
+        /*int m = matrix.length;
         int n = matrix[0].length;
         for(int[] row : matrix){
             if(row[0] <= target && target <= row[n-1]){
@@ -30,6 +30,6 @@ class Solution {
                 }
             }
         }
-        return false;
+        return false;*/
     }
 }
