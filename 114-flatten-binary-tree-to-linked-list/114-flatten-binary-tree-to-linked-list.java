@@ -15,10 +15,23 @@
  */
 class Solution {
     public void flatten(TreeNode root) {
-        helper(root,null);
+        // helper(root,null);
+        //Without space
+        while(root != null){
+            if(root.left != null){
+                TreeNode prev = root.left;
+                while(prev.right != null){
+                    prev = prev.right;
+                }
+                prev.right = root.right;
+                root.right = root.left;
+                root.left = null;
+            }
+            root = root.right;
+        }
     }
-    //Without Space
-    private TreeNode helper(TreeNode root,TreeNode prev){
+    //With Stack Space
+    /*private TreeNode helper(TreeNode root,TreeNode prev){
         if(root == null) return prev;
         
         TreeNode right = helper(root.right,prev);
@@ -26,5 +39,5 @@ class Solution {
         root.right = left;
         root.left = null;
         return root;
-    }
+    }*/
 }
