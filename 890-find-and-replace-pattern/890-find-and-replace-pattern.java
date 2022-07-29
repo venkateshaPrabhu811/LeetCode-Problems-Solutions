@@ -1,15 +1,15 @@
 class Solution {
     public List<String> findAndReplacePattern(String[] words, String pattern) {
         List<String> res = new LinkedList<>();
-        String match = generateCode(pattern,new HashMap<Character,Integer>());
-        for(int i = 0;i<words.length;++i){
-            String temp = generateCode(words[i],new HashMap<Character,Integer>());
-            if(temp.equals(match)) res.add(words[i]);
+        String match = generateCode(pattern);
+        for(String str : words){
+            if(generateCode(str).equals(match)) res.add(str);
         }
         return res;
     }
-    private String generateCode(String pattern,HashMap<Character,Integer> map){
+    private String generateCode(String pattern){
         String res = "";
+        HashMap<Character,Integer> map = new HashMap<>();
         for(int i = 0;i<pattern.length();++i){
             char ch = pattern.charAt(i);
             if(!map.containsKey(ch)){
