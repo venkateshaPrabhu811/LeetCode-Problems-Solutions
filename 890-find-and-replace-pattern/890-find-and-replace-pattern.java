@@ -1,11 +1,9 @@
 class Solution {
     public List<String> findAndReplacePattern(String[] words, String pattern) {
         List<String> res = new LinkedList<>();
-        HashMap<Character,Integer> map = new HashMap<>();
-        String match = generateCode(pattern,map);
+        String match = generateCode(pattern,new HashMap<Character,Integer>());
         for(int i = 0;i<words.length;++i){
-            map.clear();
-            String temp = generateCode(words[i],map);
+            String temp = generateCode(words[i],new HashMap<Character,Integer>());
             if(temp.equals(match)) res.add(words[i]);
         }
         return res;
