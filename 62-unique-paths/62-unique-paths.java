@@ -7,14 +7,30 @@ class Solution {
         }
         return helper(dp,0,0,m,n);*/
         //Dp top-down approach
-        int[][] dp = new int[m][n];
+        /*int[][] dp = new int[m][n];
         for(int i = 0;i<m;++i){
             for(int j = 0;j<n;++j){
                 if(i == 0 || j == 0) dp[i][j] = 1;
                 else dp[i][j] = dp[i-1][j] + dp[i][j-1];
             }
         }
-        return dp[m-1][n-1];
+        return dp[m-1][n-1];*/
+        
+        //O(1) space
+        if(m == 1 || n == 1) return 1;
+        --m;
+        --n;
+        if(m < n){
+            m = m + n;
+            n = m - n;
+            m = m - n;
+        }
+        long res = 1;
+        for(int i = m+1,j = 1;i<=m+n;++i,++j){
+            res *= i;
+            res /= j;
+        }
+        return (int)res;
         
     }
     /*DFS TLE
