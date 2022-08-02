@@ -13,8 +13,8 @@ class Solution {
         }
         return pq.peek();*/
         
-        //Heap with Optimization
-        int n = matrix.length;
+        //Heap Another Approach
+        /*int n = matrix.length;
         PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
         
         for(int i = 0;i<Math.min(n,k);++i){
@@ -28,6 +28,22 @@ class Solution {
             ans = top[0];
             if(c + 1 < n) pq.offer(new int[]{matrix[r][c+1],r,c+1});
         }
-        return ans;
+        return ans;*/
+        
+        //Binary Search
+        int n = matrix.length;
+        int low = matrix[0][0];
+        int high = matrix[n-1][n-1];
+        while(low < high) {
+            int mid = low + (high - low) / 2;
+            int count = 0,  j = n - 1;
+            for(int i = 0; i < n; ++i) {
+                while(j >= 0 && matrix[i][j] > mid) --j;
+                count += (j + 1);
+            }
+            if(count < k) low = mid + 1;
+            else high = mid;
+        }
+        return low;
     }
 }
