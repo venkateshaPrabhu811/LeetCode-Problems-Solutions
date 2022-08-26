@@ -1,6 +1,6 @@
 class Solution {
     public boolean reorderedPowerOf2(int n) {
-        int[] freq = new int[10];
+        /*int[] freq = new int[10];
         int temp = n;
         while(temp > 0){
             ++freq[temp % 10];
@@ -19,6 +19,19 @@ class Solution {
             }
             if(i == 10) return true;
         }
+        return false;*/
+        
+        //TC : O(10) + O(32*(10 + 10));
+        
+        long c = count(n);
+        for(int i = 0;i<32;++i){
+            if(count(1 << i) == c) return true;
+        }
         return false;
+    }
+    private long count(int N){
+        long res = 0;
+        for(;N > 0;N /= 10) res += (int)Math.pow(10,N%10);
+        return res;
     }
 }
