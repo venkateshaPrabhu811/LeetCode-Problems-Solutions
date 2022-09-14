@@ -17,27 +17,18 @@ class Solution {
     int count = 0;
     public int pseudoPalindromicPaths (TreeNode root) {
         if(root == null) return 0;
-        int[] mask = new int[10];
-        TreeNode temp = dfs(root,mask);
+        TreeNode temp = dfs(root,0);
         return count;
     }
-    private TreeNode dfs(TreeNode root,int[] mask){
+    private TreeNode dfs(TreeNode root,int mask){
         if(root == null) return null;
-        ++mask[root.val];
+        mask ^= 1 << root.val;
+        
         TreeNode left = dfs(root.left,mask);
         TreeNode right = dfs(root.right,mask);
         if(left == null && right == null){
-            if(checkPermute(mask)) ++count;
+            if((mask & (mask -1)) == 0) ++count;
         }
-        --mask[root.val];
         return root;
-    }
-    private boolean checkPermute(int[] mask){
-        int oddParity = 0;
-        for(int i = 1;i<10;++i){
-            if(mask[i] % 2 != 0) ++oddParity;
-            if(oddParity  > 1) return false;
-        }
-        return true;
     }
 }
