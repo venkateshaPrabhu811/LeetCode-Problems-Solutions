@@ -1,22 +1,15 @@
 class Solution {
     public String reverseWords(String s) {
-        int ptr = 0;
-        int n = s.length();
-        String res = new String();
-        while(ptr < n){
-            StringBuilder sb = new StringBuilder();
-            while(s.charAt(ptr) != ' '){
-                sb.append(s.charAt(ptr));
-                ++ptr;
-                if(ptr == n) break;
-            }
-            if(ptr == n){
-                res += sb.reverse().toString();
-                break;
-            }
-            ++ptr;
-            res += sb.reverse().toString() + " ";
+        String[] arr = s.split(" ");
+        int n = arr.length;
+        for(int i = 0;i<n;++i){
+            arr[i] = new StringBuilder(arr[i]).reverse().toString();
         }
+        String res = new String();
+        for(int i = 0;i<n-1;++i){
+            res += arr[i] + " ";
+        }
+        res += arr[n-1];
         return res;
     }
 }
